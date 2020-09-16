@@ -59,7 +59,6 @@ export default (state, action) =>{
             let ids = action.payload;
             let newCart = cartItems.filter(object => object.id !== ids.id)
             let newCartCount = newCart.reduce((accumulator, currentValue) => accumulator + currentValue.count, 0);
-            // console.log(newCart);
 
             return{
                 ...state,

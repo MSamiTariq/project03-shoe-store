@@ -8,6 +8,16 @@ import { useSnackbar } from 'notistack';
 
 export const GridTableData = ({gridTableData}) => {
     const {addItems, removeItems, emptyCart, minusItems, removeObjects } = useContext(GlobalContext);
+    
+    function itemAdded() {
+        enqueueSnackbar('Cart Checkout Success', {
+            variant: 'success',
+            anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'right',
+            },
+        });
+    }
     function removeObj(gridData){
         enqueueSnackbar('Item removed from the cart', {
             variant: 'info',
@@ -39,7 +49,8 @@ export const GridTableData = ({gridTableData}) => {
                 customBodyRenderLite: (dataIndex, rowIndex) => {
                     return (
                         <div>
-                            <IconButton color="primary" aria-label="add" onClick={() => addItems(gridTableData[dataIndex].id)}>
+                            <IconButton color="primary" aria-label="add" onClick={() => {addItems(gridTableData[dataIndex].id)
+                            itemAdded()}}>
                                 <AddCircleOutlineIcon />
                             </IconButton>
                             {gridTableData[dataIndex].count}
@@ -80,6 +91,7 @@ export const GridTableData = ({gridTableData}) => {
         print: false,
         viewColumns: false,
         pagination: false,
+        search: false,
     };
 
 
